@@ -3,16 +3,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import java.util.concurrent.TimeUnit;
-
 import static org.testng.Assert.assertEquals;
 
 public class HeaderLink {
-    @Test
-    public static void goToHome() {
-        WebDriver driver = new ChromeDriver();
+    WebDriver driver;
+    @BeforeTest
+    public void setup() {
+
+        driver = new ChromeDriver();
         driver.get("https://litecart.stqa.ru/en/");
+
+    }
+    @Test
+    public void goToHome() {
 
         WebElement element = driver.findElement(By.cssSelector("li.general-0"));
 
@@ -23,13 +29,10 @@ public class HeaderLink {
         String title= driver.getTitle();
         assertEquals(title,"Online Store | My Store1");
 
-        driver.quit();
 
     }
     @Test
-    public static void goToRubberDucks() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://litecart.stqa.ru/en/");
+    public void goToRubberDucks() {
 
         WebElement element = driver.findElement(By.cssSelector("li.category-1"));
 
@@ -41,12 +44,9 @@ public class HeaderLink {
 
         assertEquals(title,"Rubber Ducks | My Store1");
 
-        driver.quit();
     }
     @Test
-    public static void goToDeliveryInfo() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://litecart.stqa.ru/en/");
+    public void goToDeliveryInfo() {
 
         WebElement element = driver.findElement(By.cssSelector("li.page-2"));
         Actions builder = new Actions(driver);
@@ -56,12 +56,10 @@ public class HeaderLink {
         String title= driver.getTitle();
         assertEquals(title,"Delivery Information | My Store1");
 
-        driver.quit();
+
     }
     @Test
-    public static void goToTermsConditions() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://litecart.stqa.ru/en/");
+    public void goToTermsConditions() {
 
         WebElement element = driver.findElement(By.cssSelector("li.page-4"));
         Actions builder = new Actions(driver);
@@ -71,6 +69,24 @@ public class HeaderLink {
         String title= driver.getTitle();
         assertEquals(title,"Terms & Conditions | My Store1");
 
+
+    }
+    @Test
+    public void goToSubcategory(){
+        WebElement element = driver.findElement(By.cssSelector("li.category-1"));
+
+        Actions builder = new Actions(driver);
+        builder.moveToElement(element).perform();
+        WebElement subcategory = driver.findElement(By.cssSelector("li.category-1 > ul > li.category-2"));
+        builder.moveToElement(subcategory);
+        //builder.moveByOffset(0, -30).perform();
+        builder.doubleClick(subcategory).perform();
+
+        String title= driver.getTitle();
+        assertEquals(title,"Subcategory | My Store1");
+    }
+    @AfterTest
+    public void finish(){
         driver.quit();
     }
 
