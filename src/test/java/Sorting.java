@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -27,14 +26,10 @@ public class Sorting {
     public void sortName() {
 
         WebElement pageDucks = driver.findElement(By.cssSelector("li.category-1"));
-
-        Actions builder = new Actions(driver);
-        builder.moveToElement(pageDucks).perform();
-        builder.doubleClick(pageDucks).perform();
+        pageDucks.click();
 
         WebElement name = driver.findElement(By.cssSelector("#box-category > nav > a:first-child"));
-        builder.moveToElement(name).perform();
-        builder.doubleClick(name).perform();
+        name.click();
 
         List<String> namesList = driver.findElements(By.cssSelector(".name")).stream().map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -52,16 +47,12 @@ public class Sorting {
     public void sortPrice() {
 
         WebElement pageDucks = driver.findElement(By.cssSelector("li.category-1"));
+        pageDucks.click();
 
-        Actions builder = new Actions(driver);
-        builder.moveToElement(pageDucks).perform();
-        builder.doubleClick(pageDucks).perform();
+        WebElement price = driver.findElement(By.cssSelector(".filter > span"));
+        price.click();
 
-        WebElement name = driver.findElement(By.cssSelector(".filter > span"));
-        builder.moveToElement(name).perform();
-        builder.doubleClick(name).perform();
-
-        List<String> namesList = driver.findElements(By.cssSelector(".price")).stream().map(WebElement::getText)
+        List<String> pricesList = driver.findElements(By.cssSelector(".price")).stream().map(WebElement::getText)
                 .collect(Collectors.toList());
         ArrayList<String> rightSorting = new ArrayList<>();
         rightSorting.add("0 €");
@@ -70,7 +61,7 @@ public class Sorting {
         rightSorting.add("14.60 €");
         rightSorting.add("65.70 €");
 
-        assertEquals(namesList, rightSorting);
+        assertEquals(pricesList, rightSorting);
 
     }
 
