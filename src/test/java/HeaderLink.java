@@ -23,12 +23,10 @@ public class HeaderLink {
         WebElement element = driver.findElement(By.cssSelector("li.general-0"));
 
         Actions builder = new Actions(driver);
-        builder.moveToElement(element).perform();
-        builder.doubleClick(element).perform();
+        builder.click(element).perform();
 
         String title= driver.getTitle();
         assertEquals(title,"Online Store | My Store1");
-
 
     }
     @Test
@@ -37,8 +35,7 @@ public class HeaderLink {
         WebElement element = driver.findElement(By.cssSelector("li.category-1"));
 
         Actions builder = new Actions(driver);
-        builder.moveToElement(element).perform();
-        builder.doubleClick(element).perform();
+        builder.click(element).perform();
 
         String title= driver.getTitle();
 
@@ -50,12 +47,10 @@ public class HeaderLink {
 
         WebElement element = driver.findElement(By.cssSelector("li.page-2"));
         Actions builder = new Actions(driver);
-        builder.moveToElement(element).perform();
-        builder.doubleClick(element).perform();
+        builder.click(element).perform();
 
         String title= driver.getTitle();
         assertEquals(title,"Delivery Information | My Store1");
-
 
     }
     @Test
@@ -63,12 +58,10 @@ public class HeaderLink {
 
         WebElement element = driver.findElement(By.cssSelector("li.page-4"));
         Actions builder = new Actions(driver);
-        builder.moveToElement(element).perform();
-        builder.doubleClick(element).perform();
+        builder.click(element).perform();
 
         String title= driver.getTitle();
         assertEquals(title,"Terms & Conditions | My Store1");
-
 
     }
     @Test
@@ -77,13 +70,13 @@ public class HeaderLink {
 
         Actions builder = new Actions(driver);
         builder.moveToElement(element).perform();
+
         WebElement subcategory = driver.findElement(By.cssSelector("li.category-1 > ul > li.category-2"));
-        builder.moveToElement(subcategory);
-        //builder.moveByOffset(0, -30).perform();
-        builder.doubleClick(subcategory).perform();
+        builder.click(subcategory).perform();
 
         String title= driver.getTitle();
         assertEquals(title,"Subcategory | My Store1");
+
     }
     @AfterTest
     public void finish(){
