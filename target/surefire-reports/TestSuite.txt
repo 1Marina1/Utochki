@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 19.848 s <<< FAILURE! - in TestSuite
+goToSubcategory(TestHomePage)  Time elapsed: 0.403 s  <<< FAILURE!
+java.lang.AssertionError: null
+	at TestHomePage.goToSubcategory(TestHomePage.java:65)
+

@@ -1,8 +1,9 @@
-import Pages.HomePage;
-import Pages.RubberDucks;
+import pages.HomePage;
+import pages.RubberDucks;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+import pages.WebDriverContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,12 @@ public class TestRubberDucks extends TestBase{
     @Test
     public void sortName() {
 
-        HomePage homePage = PageFactory.initElements(driver,HomePage.class);
+        HomePage homePage = PageFactory.initElements(WebDriverContainer.getDriver(),HomePage.class);
         homePage.getRubberDucksMenuButton().click();
-
-        RubberDucks rubberDucks = PageFactory.initElements(driver, RubberDucks.class);
+        logger.info("Went to Rubber Ducks page");
+        RubberDucks rubberDucks = PageFactory.initElements(WebDriverContainer.getDriver(), RubberDucks.class);
         rubberDucks.sortByName();
-
+        logger.info("Sorted ducks by name");
         List<String> namesList = rubberDucks.getProductName().stream().map(WebElement::getText)
                 .collect(Collectors.toList());
         ArrayList<String> rightSorting = new ArrayList<>();
@@ -36,12 +37,12 @@ public class TestRubberDucks extends TestBase{
     @Test
     public void sortPrice() {
 
-        HomePage homePage = PageFactory.initElements(driver,HomePage.class);
+        HomePage homePage = PageFactory.initElements(WebDriverContainer.getDriver(),HomePage.class);
         homePage.getRubberDucksMenuButton().click();
-
-        RubberDucks rubberDucks = PageFactory.initElements(driver, RubberDucks.class);
+        logger.info("Went to Rubber Ducks page");
+        RubberDucks rubberDucks = PageFactory.initElements(WebDriverContainer.getDriver(), RubberDucks.class);
         rubberDucks.sortByPrice();
-
+        logger.info("Sorted ducks by price");
         List<String> pricesList = rubberDucks.getProductPrice().stream().map(WebElement::getText)
                 .collect(Collectors.toList());
         ArrayList<String> rightSorting = new ArrayList<>();

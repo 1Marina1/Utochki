@@ -1,47 +1,61 @@
-import Pages.HomePage;
-import Pages.Subcategory;
+import pages.HomePage;
+import pages.Subcategory;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.WebDriverContainer;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestSubcategory extends TestBase {
+public class TestSubcategory extends TestBase{
 
-    @BeforeTest
-    public void subCategorySetup() {
+    @Test
+    public void checkYellowDuckLabel(){
+        HomePage homePage = PageFactory.initElements(WebDriverContainer.getDriver(),HomePage.class);
 
-        HomePage homePage = PageFactory.initElements(driver,HomePage.class);
-
-        Actions builder = new Actions(driver);
+        Actions builder = new Actions(WebDriverContainer.getDriver());
         builder.moveToElement(homePage.getRubberDucksMenuButton()).perform();
 
         homePage.getSubcategoryDropDownMenuButton().click();
+        logger.info("Trying to go to subcategory page");
 
-    }
-    @Test
-    public void checkYellowDuckLabel(){
-        Subcategory subcategory = PageFactory.initElements(driver,Subcategory.class);
+        Subcategory subcategory = PageFactory.initElements(WebDriverContainer.getDriver(),Subcategory.class);
         String label = subcategory.getYellowDuckSticker().getText();
-
+        logger.info("Got sale label from yellow duck");
         assertEquals(label,"SALE");
 
     }
     @Test
     public void checkGreenDuckLabel(){
-        Subcategory subcategory = PageFactory.initElements(driver,Subcategory.class);
-        String label = subcategory.getGreenDuckSticker().getText();
+        HomePage homePage = PageFactory.initElements(WebDriverContainer.getDriver(),HomePage.class);
 
+        Actions builder = new Actions(WebDriverContainer.getDriver());
+        builder.moveToElement(homePage.getRubberDucksMenuButton()).perform();
+
+        homePage.getSubcategoryDropDownMenuButton().click();
+        logger.info("Trying to go to subcategory page");
+
+        Subcategory subcategory = PageFactory.initElements(WebDriverContainer.getDriver(),Subcategory.class);
+        String label = subcategory.getGreenDuckSticker().getText();
+        logger.info("Got new label from green duck");
         assertEquals(label,"NEW");
     }
     @Test
     public void checkPinkDuckLabelCheck(){
-        Subcategory subcategory = PageFactory.initElements(driver,Subcategory.class);
-        String label = subcategory.getPinkDuckSticker().getText();
+        HomePage homePage = PageFactory.initElements(WebDriverContainer.getDriver(),HomePage.class);
 
+        Actions builder = new Actions(WebDriverContainer.getDriver());
+        builder.moveToElement(homePage.getRubberDucksMenuButton()).perform();
+
+        homePage.getSubcategoryDropDownMenuButton().click();
+        logger.info("Trying to go to subcategory page");
+
+        Subcategory subcategory = PageFactory.initElements(WebDriverContainer.getDriver(),Subcategory.class);
+        String label = subcategory.getPinkDuckSticker().getText();
+        logger.info("Got new label from pink duck");
         assertEquals(label,"NEW");
     }
+
 
 }
 
